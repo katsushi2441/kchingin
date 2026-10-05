@@ -178,14 +178,18 @@ footer{margin-top:40px;border-top:1px solid var(--line);padding:18px 0;font-size
 </style></head><body>';
     echo '<header class="top"><div class="wrap"><a class="brand" href="' . u('/') . '"><img src="https://exbridge.jp/images/logo-mark-128.png" width="34" height="34" alt="株式会社エクスブリッジ"><span>' . h(NAME) . '<small>最低賃金 ' . FY . '・業務改善助成金</small></span></a>';
     echo '<nav class="menu"><a href="' . u('/') . '">計算する</a><a href="' . u('/josei/') . '">業務改善助成金</a><a href="' . u('/about') . '">出典と計算</a></nav>';
+    if (($_SERVER['HTTP_HOST'] ?? '') === 'kurage.exbridge.jp') {   // 当社の公開先だけ。配布版を置いたサイトには出さない
     echo '<!--kurage-only--><span class="promo"><a href="https://exbridge.jp/ai-it-komon.html?ref=kchingin-head-komon" target="_blank" rel="noopener">AI-IT顧問</a><a href="https://kurage.exbridge.jp/vibe-customize.html?ref=kchingin-head-vibe" target="_blank" rel="noopener">バイブカスタマイズ</a><a href="https://kurage.exbridge.jp/reseller.html?ref=kchingin-head-reseller" target="_blank" rel="noopener">販売代理店募集</a></span><!--/kurage-only-->';
+    }
     echo '</div></header><main class="wrap">' . $body . '</main>';
     echo '<footer><div class="wrap">';
     echo '<p>出典：厚生労働省「<a href="' . SRC_MW . '" rel="noopener">令和8年度 地域別最低賃金 答申状況</a>」「<a href="' . SRC_JOSEI . '" rel="noopener">令和8年度業務改善助成金のご案内</a>」（' . jd(CHECKED) . '確認）。発効日は答申後の手続きで変わることがあります。</p>';
     echo '<p>このページは計算の目安です。助成金の要件・金額は労働局の審査で決まります。申請は事業所の所在地の都道府県労働局へ。入力した時給はブラウザの中だけで計算し、送信・保存しません。</p>';
     echo '<p><a href="https://exbridge.jp/?ref=kchingin">株式会社エクスブリッジ</a>（名古屋・業務システム開発）・<a href="https://exbridge.jp/ai-agent-automation.html?ref=kchingin-foot">AIエージェントで業務を自動化する</a>・<a href="' . SITE . '/khojokin.php/?ref=kchingin">Kurage 補助金ナビ</a>・<a href="' . SITE . '/ktoriteki.php/?ref=kchingin">Kurage 取適法チェック</a>・<a href="' . SITE . '/kseidocal.php/?ref=kchingin">経営者の制度カレンダー</a></p>';
     echo '</div></footer>';
+    if (($_SERVER['HTTP_HOST'] ?? '') === 'kurage.exbridge.jp') {   // 計測も当社の公開先だけ
     echo '<img src="' . SITE . '/simpletrack.php?t=img&url=' . rawurlencode($url) . '&ref=' . rawurlencode((string)($_GET['ref'] ?? '')) . '" width="1" height="1" alt="" aria-hidden="true" style="position:absolute;left:-9999px">';
+    }
     if (($_SERVER['HTTP_HOST'] ?? '') === 'kurage.exbridge.jp') echo '<script src="https://kurage.exbridge.jp/partner-bar.js" defer></script>';
     echo '</body></html>';
 }
